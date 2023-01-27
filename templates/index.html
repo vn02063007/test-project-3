@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Bar Chart</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+  <div id="myDiv"></div>
+  <script>
+    var data = {{ data|tojson|safe }};
+    var x = data.map(function(d) { return d["Condition Point"]; });
+    var y = data.map(function(d) { return d["Count"]; });
+    var trace = {
+      x: x,
+      y: y,
+      type: 'bar'
+    };
+    var layout = {
+      title: 'Number of Condition Point'
+    };
+    Plotly.newPlot('myDiv', [trace], layout);
+  </script>
+</body>
+</html>
